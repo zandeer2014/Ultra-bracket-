@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ULTRA BRACKET</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0b0b10;
+  color:white;
+  min-height:100vh;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.header{
+  height:70px;
+  padding:0 20px;
+  background:#121218;
+  border-bottom:1px solid #292932;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+}
+
+.logo span{color:#7657ff}
+
+.nav{
+  display:flex;
+  gap:8px;
+}
+
+.btn{
+  background:#22222b;
+  color:white;
+  padding:11px 15px;
+  border-radius:10px;
+}
+
+.btn:hover{opacity:.85}
+
+.primary{
+  background:#7657ff;
+}
+
+.page{
+  padding:25px;
+  max-width:1400px;
+  margin:auto;
+}
+
+.card{
+  background:#15151d;
+  border:1px solid #2b2b35;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:20px;
+}
+
+h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+h2{
+  margin-bottom:8px;
+}
+
+.muted{
+  color:#999;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #393943;
+  background:#0d0d12;
+  color:white;
+  margin-top:7px;
+  margin-bottom:17px;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+}
+
+/* TEAM CARDS */
+
+.team-card{
+  background:#181820;
+  border:1px solid #30303a;
+  border-radius:14px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.team-logo{
+  width:58px;
+  height:58px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#292932;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.team-info{
+  flex:1;
+}
+
+.team-actions{
+  display:flex;
+  gap:6px;
+}
+
+/* STYLE SELECTOR */
+
+.style-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:18px;
+}
+
+.style-card{
+  background:#191920;
+  border:2px solid #30303a;
+  border-radius:15px;
+  padding:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.style-card:hover{
+  transform:translateY(-2px);
+  border-color:#7657ff;
+}
+
+.style-card.selected{
+  border-color:#7657ff;
+  box-shadow:0 0 0 2px #7657ff33;
+}
+
+.style-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.preview{
+  height:180px;
+  border-radius:11px;
+  padding:15px;
+  overflow:hidden;
+  position:relative;
+}
+
+.p-match{
+  background:#22222b;
+  border:1px solid #444450;
+  width:105px;
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.p-team{
+  padding:7px;
+  font-size:9px;
+  border-bottom:1px solid #444450;
+}
+
+.p-team:last-child{
+  border-bottom:0;
+}
+
+.p-row{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  justify-content:center;
+  height:100%;
+}
+
+/* CLASSIC */
+
+.preview-classic{
+  background:#101014;
+}
+
+/* MODERN */
+
+.preview-modern{
+  background:linear-gradient(135deg,#171722,#252536);
+}
+
+.preview-modern .p-match{
+  border-radius:12px;
+  box-shadow:0 5px 15px #0008;
+}
+
+/* NEON */
+
+.preview-neon{
+  background:#050509;
+}
+
+.preview-neon .p-match{
+  border-color:#9a6cff;
+  box-shadow:0 0 14px #7657ff;
+}
+
+.preview-neon .p-team{
+  color:#ddd0ff;
+}
+
+/* COMPACT */
+
+.preview-compact{
+  background:#121216;
+}
+
+.preview-compact .p-match{
+  width:80px;
+}
+
+.preview-compact .p-row{
+  gap:8px;
+}
+
+/* TV */
+
+.preview-tv{
+  background:#071523;
+}
+
+.preview-tv .p-match{
+  width:120px;
+  border:2px solid #4b6680;
+  border-radius:3px;
+}
+
+/* VERTICAL */
+
+.preview-vertical{
+  background:#111116;
+}
+
+.preview-vertical .p-row{
+  flex-direction:column;
+  gap:7px;
+}
+
+/* TREE */
+
+.preview-tree{
+  background:#101014;
+}
+
+.preview-tree .p-match{
+  border-left:5px solid #7657ff;
+  border-radius:0;
+}
+
+/* MINIMAL */
+
+.preview-minimal{
+  background:white;
+}
+
+.preview-minimal .p-match{
+  background:white;
+  color:#111;
+  border:1px solid #aaa;
+  border-radius:0;
+}
+
+.preview-minimal .p-team{
+  border-color:#ccc;
+}
+
+/* BRACKET */
+
+.bracket-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.bracket-wrapper{
+  background:#101014;
+  border-radius:18px;
+  padding:30px;
+  overflow:auto;
+  min-height:600px;
+}
+
+.bracket{
+  display:flex;
+  gap:45px;
+  min-width:max-content;
+  min-height:500px;
+  align-items:center;
+}
+
+.round{
+  min-width:220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  gap:20px;
+  min-height:470px;
+}
+
+.round-title{
+  text-align:center;
+  color:#aaa;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.match{
+  width:220px;
+  background:#191920;
+  border:1px solid #363640;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.match-team{
+  padding:13px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #363640;
+}
+
+.match-team:last-child{
+  border-bottom:0;
+}
+
+/* MODERN */
+
+.style-modern .match{
+  border-radius:15px;
+  box-shadow:0 8px 25px #0007;
+}
+
+/* NEON */
+
+.style-neon{
+  background:#050509;
+}
+
+.style-neon .match{
+  border-color:#7657ff;
+  box-shadow:0 0 18px #7657ff66;
+}
+
+.style-neon .round-title{
+  color:#bca7ff;
+}
+
+/* COMPACT */
+
+.style-compact .bracket{
+  gap:18px;
+}
+
+.style-compact .round{
+  min-width:160px;
+}
+
+.style-compact .match{
+  width:160px;
+  font-size:12px;
+}
+
+.style-compact .match-team{
+  padding:8px;
+}
+
+/* TV */
+
+.style-tv{
+  background:#071523;
+}
+
+.style-tv .match{
+  width:250px;
+  border:2px solid #40576d;
+  border-radius:4px;
+}
+
+.style-tv .match-team{
+  padding:16px;
+}
+
+.style-tv .round-title{
+  color:#7fbfff;
+}
+
+/* VERTICAL */
+
+.style-vertical .bracket{
+  flex-direction:column;
+}
+
+.style-vertical .round{
+  flex-direction:row;
+  min-height:auto;
+}
+
+/* TREE */
+
+.style-tree .bracket{
+  gap:75px;
+}
+
+.style-tree .match{
+  border-left:5px solid #7657ff;
+  border-radius:0;
+}
+
+/* MINIMAL */
+
+.style-minimal{
+  background:white;
+  color:#111;
+}
+
+.style-minimal .bracket-wrapper{
+  background:white;
+}
+
+.style-minimal .match{
+  background:white;
+  color:#111;
+  border:1px solid #aaa;
+  border-radius:0;
+}
+
+.style-minimal .match-team{
+  border-color:#ccc;
+}
+
+.style-minimal .round-title{
+  color:#555;
+}
+
+/* SAVED */
+
+.saved{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:#181820;
+  border:1px solid #30303a;
+  border-radius:13px;
+  padding:17px;
+  margin-bottom:10px;
+}
+
+/* EMPTY BRACKET */
+
+.empty-bracket{
+  width:320px;
+  text-align:center;
+  padding:35px;
+  background:#181820;
+  border:1px dashed #555565;
+  border-radius:18px;
+}
+
+.empty-icon{
+  font-size:55px;
+  margin-bottom:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .header{
+    padding:0 10px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .nav .btn{
+    padding:8px;
+    font-size:11px;
+  }
+
+  .page{
+    padding:15px;
+  }
+
+  .bracket-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="logo">
+    ULTRA <span>BRACKET</span>
+  </div>
+
+  <div class="nav">
+
+    <button class="btn" onclick="showHome()">
+      Home
+    </button>
+
+    <button class="btn" onclick="showTeams()">
+      Teams
+    </button>
+
+    <button class="btn primary" onclick="showSetup()">
+      + Bracket
+    </button>
+
+  </div>
+
+</header>
+
+<div id="app"></div>
+
+<script>
+
+/* =========================================
+   SAVED DATA
+========================================= */
+
+let teams =
+  JSON.parse(
+    localStorage.getItem("ultraTeams") || "[]"
+  );
+
+let tournaments =
+  JSON.parse(
+    localStorage.getItem("ultraBrackets") || "[]"
+  );
+
+let selectedStyle =
+  localStorage.getItem("ultraStyle") || "classic";
+
+let currentTournament = null;
+
+
+/* =========================================
+   BRACKET STYLES
+========================================= */
+
+const styles = {
+
+  classic:{
+    name:"Classic",
+    description:"Traditional tournament bracket."
+  },
+
+  modern:{
+    name:"Modern",
+    description:"Clean cards with rounded corners."
+  },
+
+  neon:{
+    name:"Neon",
+    description:"Glowing esports-style bracket."
+  },
+
+  compact:{
+    name:"Compact",
+    description:"Small layout for huge tournaments."
+  },
+
+  tv:{
+    name:"TV Sports",
+    description:"Professional sports broadcast style."
+  },
+
+  vertical:{
+    name:"Vertical",
+    description:"Rounds stacked vertically."
+  },
+
+  tree:{
+    name:"Tournament Tree",
+    description:"Big championship tree design."
+  },
+
+  minimal:{
+    name:"Minimal",
+    description:"Simple black-and-white bracket."
+  }
+
+};
+
+
+/* =========================================
+   HOME PAGE
+========================================= */
+
+function showHome(){
+
+  let html = `
+
+    <div class="page">
+
+      <div class="bracket-header">
+
+        <div>
+
+          <h1>ULTRA BRACKET</h1>
+
+          <p class="muted">
+            Your saved tournaments
+          </p>
+
+        </div>
+
+        <button
+          class="btn primary"
+          onclick="showSetup()">
+
+          + Create New Bracket
+
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>Saved Brackets</h2>
+
+        <div style="margin-top:15px">
+
+  `;
+
+
+  if(!tournaments.length){
+
+    html += `
+
+      <p class="muted">
+        No saved brackets yet.
+      </p>
+
+    `;
+
+  }else{
+
+    tournaments.forEach((t,i)=>{
+
+      html += `
+
+        <div class="saved">
+
+          <div>
+
+            <strong>
+              ${escapeHTML(t.name)}
+            </strong>
+
+            <div class="muted">
+
+              ${escapeHTML(
+                t.type || "Single Elimination"
+              )}
+
+              • ${t.teams?.length || 0} teams
+
+            </div>
+
+          </div>
+
+
+          <div class="controls">
+
+            <button
+              class="btn"
+              onclick="openTournament(${i})">
+
+              Open
+
+            </button>
+
+            <button
+              class="btn"
+              onclick="deleteTournament(${i})">
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  html += `
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.getElementById("app").innerHTML =
+    html;
+
+}
+
+
+/* =========================================
+   TEAMS PAGE
+========================================= */
+
+function showTeams(){
+
+  renderTeams();
+
+}
+
+
+function renderTeams(search=""){
+
+  const filtered =
+    teams.filter(team =>
+      team.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    );
+
+
+  let html = `
+
+    <div class="page">
+
+      <div class="bracket-header">
+
+        <div>
+
+          <h1>Teams</h1>
+
+          <p class="muted">
+            Your saved teams
+          </p>
+
+        </div>
+
+
+        <button
+          class="btn primary"
+          onclick="createTeam()">
+
+          + Create Team
+
+        </button>
+
+      </div>
+
+
+      <input
+        placeholder="Search teams..."
+        oninput="renderTeams(this.value)"
+      >
+
+
+      <div class="grid">
+
+  `;
+
+
+  if(!filtered.length){
+
+    html += `
+
+      <div class="card">
+
+        <h2>No teams yet</h2>
+
+        <p class="muted">
+          Create a team or simply generate a bracket
+          without teams.
+        </p>
+
+      </div>
+
+    `;
+
+  }else{
+
+    filtered.forEach(team=>{
+
+      const index =
+        teams.indexOf(team);
+
+
+      html += `
+
+        <div class="team-card">
+
+          ${
+            team.logo
+
+            ? `
+              <img
+                class="team-logo"
+                src="${team.logo}">
+            `
+
+            : `
+              <div class="team-logo">
+                🏆
+              </div>
+            `
+          }
+
+
+          <div class="team-info">
+
+            <strong>
+              ${escapeHTML(team.name)}
+            </strong>
+
+            <div class="muted">
+
+              ${team.wins || 0} Wins
+              •
+              ${team.losses || 0} Losses
+
+            </div>
+
+          </div>
+
+
+          <div class="team-actions">
+
+            <button
+              class="btn"
+              onclick="editTeam(${index})">
+
+              Edit
+
+            </button>
+
+            <button
+              class="btn"
+              onclick="deleteTeam(${index})">
+
+              ×
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  html += `
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.getElementById("app").innerHTML =
+    html;
+
+}
+
+
+/* =========================================
+   CREATE TEAM
+========================================= */
+
+function createTeam(){
+
+  document.getElementById("app").innerHTML = `
+
+    <div class="page">
+
+      <div class="card">
+
+        <h1>Create Team</h1>
+
+
+        <label>
+          Team Name
+        </label>
+
+        <input
+          id="newTeamName"
+          placeholder="Example: Omaha Animals"
+        >
+
+
+        <label>
+          Team Logo
+        </label>
+
+        <input
+          id="newTeamLogo"
+          type="file"
+          accept="image/*"
+        >
+
+
+        <button
+          class="btn primary"
+          onclick="saveNewTeam()">
+
+          Save Team
+
+        </button>
+
+
+        <button
+          class="btn"
+          onclick="showTeams()">
+
+          Cancel
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function saveNewTeam(){
+
+  const name =
+    document
+      .getElementById("newTeamName")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert("Enter a team name.");
+
+    return;
+
+  }
+
+
+  const file =
+    document
+      .getElementById("newTeamLogo")
+      .files[0];
+
+
+  if(file){
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = function(e){
+
+      addTeamToStorage(
+        name,
+        e.target.result
+      );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+  }else{
+
+    addTeamToStorage(
+      name,
+      ""
+    );
+
+  }
+
+}
+
+
+function addTeamToStorage(name,logo){
+
+  teams.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    logo:logo,
+
+    wins:0,
+
+    losses:0,
+
+    games:0
+
+  });
+
+
+  localStorage.setItem(
+    "ultraTeams",
+    JSON.stringify(teams)
+  );
+
+
+  showTeams();
+
+}
+
+
+function editTeam(index){
+
+  const team = teams[index];
+
+
+  const newName =
+    prompt(
+      "Team name:",
+      team.name
+    );
+
+
+  if(newName && newName.trim()){
+
+    team.name =
+      newName.trim();
+
+
+    localStorage.setItem(
+      "ultraTeams",
+      JSON.stringify(teams)
+    );
+
+  }
+
+
+  showTeams();
+
+}
+
+
+function deleteTeam(index){
+
+  if(!confirm(
+    "Delete this team?"
+  )) return;
+
+
+  teams.splice(index,1);
+
+
+  localStorage.setItem(
+    "ultraTeams",
+    JSON.stringify(teams)
+  );
+
+
+  showTeams();
+
+}
+
+
+/* =========================================
+   CREATE BRACKET PAGE
+========================================= */
+
+function showSetup(){
+
+  let styleHTML = "";
+
+
+  for(const key in styles){
+
+    styleHTML += `
+
+      <div
+        class="style-card
+        ${selectedStyle === key
+          ? "selected"
+          : ""}"
+
+        onclick="
+          selectStyle('${key}')
+        "
+      >
+
+        <div class="style-title">
+          ${styles[key].name}
+        </div>
+
+
+        <div
+          class="preview preview-${key}"
+        >
+
+          <div class="p-row">
+
+
+            <div class="p-match">
+
+              <div class="p-team">
+                Tigers
+              </div>
+
+              <div class="p-team">
+                Eagles
+              </div>
+
+            </div>
+
+
+            <div class="p-match">
+
+              <div class="p-team">
+                Bulls
+              </div>
+
+              <div class="p-team">
+                Wolves
+              </div>
+
+            </div>
+
+
+            <div class="p-match">
+
+              <div class="p-team">
+                FINAL
+              </div>
+
+              <div class="p-team">
+                🏆
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="muted"
+          style="margin-top:9px;font-size:13px">
+
+          ${styles[key].description}
+
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  document.getElementById("app").innerHTML = `
+
+    <div class="page">
+
+
+      <div class="card">
+
+        <h1>
+          Create New Bracket
+        </h1>
+
+
+        <label>
+          Tournament Name
+        </label>
+
+        <input
+          id="tournamentName"
+          placeholder="Example: Omaha Cup"
+        >
+
+
+        <label>
+          Start Date
+        </label>
+
+        <input
+          id="startDate"
+          type="date"
+        >
+
+
+        <label>
+          End Date
+        </label>
+
+        <input
+          id="endDate"
+          type="date"
+        >
+
+
+        <label>
+          Game Start Time
+        </label>
+
+        <input
+          id="gameTime"
+          type="time"
+        >
+
+
+        <label>
+          Bracket Type
+        </label>
+
+        <select id="bracketType">
+
+          <option>
+            Single Elimination
+          </option>
+
+          <option>
+            Double Elimination
+          </option>
+
+          <option>
+            Round Robin
+          </option>
+
+          <option>
+            Group Stage
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>
+          Choose Your Bracket Style
+        </h2>
+
+        <p
+          class="muted"
+          style="margin-bottom:18px">
+
+          Tap an example to select it.
+
+        </p>
+
+
+        <div class="style-grid">
+
+          ${styleHTML}
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>
+          Select Teams
+        </h2>
+
+        <p
+          class="muted"
+          style="margin-bottom:15px">
+
+          Teams are optional.
+          You can generate the bracket with zero teams.
+
+        </p>
+
+
+        <div id="teamSelector">
+
+          ${renderTeamSelector()}
+
+        </div>
+
+      </div>
+
+
+      <!-- THIS IS THE GENERATE BUTTON -->
+
+      <button
+        class="btn primary"
+        style="
+          width:100%;
+          padding:18px;
+          font-size:17px;
+          margin-bottom:30px;
+        "
+        onclick="generateBracket()">
+
+        GENERATE BRACKET
+
+      </button>
+
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   STYLE SELECTION
+========================================= */
+
+function selectStyle(style){
+
+  selectedStyle = style;
+
+
+  localStorage.setItem(
+    "ultraStyle",
+    style
+  );
+
+
+  showSetup();
+
+}
+
+
+/* =========================================
+   TEAM SELECTOR
+========================================= */
+
+function renderTeamSelector(){
+
+  if(!teams.length){
+
+    return `
+
+      <div
+        style="
+          padding:18px;
+          background:#1a1a22;
+          border-radius:12px;
+        "
+      >
+
+        <p class="muted">
+
+          No saved teams yet.
+
+          That's okay — you can still
+          generate the bracket.
+
+        </p>
+
+
+        <button
+          class="btn"
+          style="margin-top:12px"
+          onclick="createTeam()">
+
+          + Create Team
+
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  return teams.map((team,i)=>`
+
+    <label
+      style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        background:#1b1b23;
+        padding:12px;
+        border-radius:10px;
+        margin-bottom:8px;
+      "
+    >
+
+
+      <input
+        type="checkbox"
+        value="${i}"
+        style="
+          width:auto;
+          margin:0;
+        "
+      >
+
+
+      ${
+        team.logo
+
+        ? `
+          <img
+            src="${team.logo}"
+            style="
+              width:35px;
+              height:35px;
+              object-fit:cover;
+              border-radius:7px;
+            "
+          >
+        `
+
+        : "🏆"
+      }
+
+
+      ${escapeHTML(team.name)}
+
+    </label>
+
+  `).join("");
+
+}
+
+
+/* =========================================
+   GENERATE BRACKET
+========================================= */
+
+function generateBracket(){
+
+  const selected =
+    [
+      ...document.querySelectorAll(
+        '#teamSelector input[type="checkbox"]:checked'
+      )
+    ];
+
+
+  const teamObjects =
+    selected
+      .map(cb =>
+        teams[Number(cb.value)]
+      )
+      .filter(Boolean);
+
+
+  currentTournament = {
+
+    id:Date.now(),
+
+    name:
+      document
+        .getElementById("tournamentName")
+        .value
+        .trim()
+      ||
+      "Untitled Tournament",
+
+
+    startDate:
+      document
+        .getElementById("startDate")
+        .value
+      ||
+      "",
+
+
+    endDate:
+      document
+        .getElementById("endDate")
+        .value
+      ||
+      "",
+
+
+    gameTime:
+      document
+        .getElementById("gameTime")
+        .value
+      ||
+      "",
+
+
+    type:
+      document
+        .getElementById("bracketType")
+        .value
+      ||
+      "Single Elimination",
+
+
+    style:
+      selectedStyle
+      ||
+      "classic",
+
+
+    teams:
+      teamObjects.map(team => ({
+
+        id:team.id,
+
+        name:team.name,
+
+        logo:team.logo || ""
+
+      }))
+
+  };
+
+
+  /*
+    IMPORTANT:
+    There is NO minimum-team check.
+
+    This means the button works with:
+
+    0 teams
+    1 team
+    2 teams
+    3 teams
+    4 teams
+    etc.
+  */
+
+  renderTournament();
+
+}
+
+
+/* =========================================
+   RENDER TOURNAMENT
+========================================= */
+
+function renderTournament(){
+
+  const t =
+    currentTournament;
+
+
+  if(!t){
+
+    showSetup();
+
+    return;
+
+  }
+
+
+  if(!Array.isArray(t.teams)){
+
+    t.teams = [];
+
+  }
+
+
+  if(!t.style){
+
+    t.style = "classic";
+
+  }
+
+
+  /* ==============================
+     ZERO TEAMS
+  ============================== */
+
+  if(t.teams.length === 0){
+
+    document.getElementById("app").innerHTML = `
+
+      <div class="page">
+
+
+        <div class="bracket-header">
+
+          <div>
+
+            <h1>
+              ${escapeHTML(t.name)}
+            </h1>
+
+            <p class="muted">
+
+              ${escapeHTML(t.type)}
+
+              •
+              ${styles[t.style]?.name || "Classic"}
+
+            </p>
+
+          </div>
+
+
+          <div class="controls">
+
+            <button
+              class="btn"
+              onclick="showSetup()">
+
+              Change Style
+
+            </button>
+
+
+            <button
+              class="btn"
+              onclick="showTeams()">
+
+              Teams
+
+            </button>
+
+
+            <button
+              class="btn primary"
+              onclick="saveTournament()">
+
+              Save
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h2>
+            Bracket Generated!
+          </h2>
+
+
+          <p
+            class="muted"
+            style="margin-top:10px">
+
+            Your bracket was successfully created
+            with zero teams.
+
+            Add teams whenever you're ready.
+
+          </p>
+
+
+          <button
+            class="btn primary"
+            style="margin-top:18px"
+            onclick="showTeams()">
+
+            + Go To Teams
+
+          </button>
+
+        </div>
+
+
+        <div
+          class="bracket-wrapper
+          style-${t.style}"
+        >
+
+          <div
+            class="bracket"
+            style="
+              justify-content:center;
+              align-items:center;
+              min-height:400px;
+            "
+          >
+
+            <div class="empty-bracket">
+
+              <div class="empty-icon">
+                🏆
+              </div>
+
+              <h2>
+                Empty Bracket
+              </h2>
+
+              <p
+                class="muted"
+                style="margin-top:8px">
+
+                TBD vs TBD
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /* ==============================
+     NORMAL BRACKET
+  ============================== */
+
+  let list =
+    [...t.teams];
+
+
+  /*
+    Fill to 8 only when necessary.
+    Every missing slot becomes TBD.
+  */
+
+  while(
+    list.length > 1 &&
+    list.length < 8
+  ){
+
+    list.push({
+      name:"TBD",
+      logo:""
+    });
+
+  }
+
+
+  let rounds = [];
+
+  let current =
+    list;
+
+
+  while(current.length > 1){
+
+    rounds.push(current);
+
+
+    let next = [];
+
+
+    for(
+      let i=0;
+      i<current.length;
+      i+=2
+    ){
+
+      next.push({
+
+        a:
+          current[i]
+          ||
+          {name:"TBD"},
+
+        b:
+          current[i+1]
+          ||
+          {name:"TBD"}
+
+      });
+
+    }
+
+
+    current =
+      next;
+
+  }
+
+
+  rounds.push({
+    final:true
+  });
+
+
+  let html = "";
+
+
+  rounds.forEach((round,index)=>{
+
+    let title;
+
+
+    if(
+      index ===
+      rounds.length - 1
+    ){
+
+      title =
+        "CHAMPIONSHIP";
+
+    }else if(
+      index ===
+      rounds.length - 2
+    ){
+
+      title =
+        "SEMIFINAL";
+
+    }else if(
+      index ===
+      rounds.length - 3
+    ){
+
+      title =
+        "QUARTERFINAL";
+
+    }else{
+
+      title =
+        "ROUND " +
+        (index + 1);
+
+    }
+
+
+    let matches = "";
+
+
+    if(round.final){
+
+      matches = `
+
+        <div class="match">
+
+          <div class="match-team">
+
+            <span>
+              🏆 Champion
+            </span>
+
+            <b>—</b>
+
+          </div>
+
+
+          <div class="match-team">
+
+            <span>
+              Finalist
+            </span>
+
+            <b>—</b>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }else{
+
+      round.forEach(game=>{
+
+        matches += `
+
+          <div class="match">
+
+            <div class="match-team">
+
+              <span>
+                ${escapeHTML(
+                  game.a?.name || "TBD"
+                )}
+              </span>
+
+              <b>0</b>
+
+            </div>
+
+
+            <div class="match-team">
+
+              <span>
+                ${escapeHTML(
+                  game.b?.name || "TBD"
+                )}
+              </span>
+
+              <b>0</b>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+
+    html += `
+
+      <div class="round">
+
+        <div class="round-title">
+          ${title}
+        </div>
+
+        ${matches}
+
+      </div>
+
+    `;
+
+  });
+
+
+  document.getElementById("app").innerHTML = `
+
+    <div class="page">
+
+
+      <div class="bracket-header">
+
+        <div>
+
+          <h1>
+            ${escapeHTML(t.name)}
+          </h1>
+
+
+          <p class="muted">
+
+            ${escapeHTML(t.type)}
+
+            •
+
+            ${styles[t.style]?.name || "Classic"}
+
+            Style
+
+          </p>
+
+        </div>
+
+
+        <div class="controls">
+
+          <button
+            class="btn"
+            onclick="showSetup()">
+
+            Change Style
+
+          </button>
+
+
+          <button
+            class="btn"
+            onclick="showTeams()">
+
+            Teams
+
+          </button>
+
+
+          <button
+            class="btn primary"
+            onclick="saveTournament()">
+
+            Save
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="muted">
+
+          ${
+            t.startDate
+            ? "Start: " + t.startDate
+            : ""
+          }
+
+
+          ${
+            t.endDate
+            ? " • End: " + t.endDate
+            : ""
+          }
+
+
+          ${
+            t.gameTime
+            ? " • Game time: " + t.gameTime
+            : ""
+          }
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="bracket-wrapper
+        style-${t.style}"
+      >
+
+        <div class="bracket">
+
+          ${html}
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   SAVE TOURNAMENT
+========================================= */
+
+function saveTournament(){
+
+  if(!currentTournament){
+
+    return;
+
+  }
+
+
+  const existing =
+    tournaments.findIndex(
+      tournament =>
+        tournament.id ===
+        currentTournament.id
+    );
+
+
+  if(existing >= 0){
+
+    tournaments[existing] =
+      currentTournament;
+
+  }else{
+
+    tournaments.push(
+      currentTournament
+    );
+
+  }
+
+
+  localStorage.setItem(
+    "ultraBrackets",
+    JSON.stringify(tournaments)
+  );
+
+
+  alert(
+    "Tournament saved!"
+  );
+
+}
+
+
+/* =========================================
+   OPEN TOURNAMENT
+========================================= */
+
+function openTournament(index){
+
+  currentTournament =
+    tournaments[index];
+
+
+  selectedStyle =
+    currentTournament.style ||
+    "classic";
+
+
+  renderTournament();
+
+}
+
+
+/* =========================================
+   DELETE TOURNAMENT
+========================================= */
+
+function deleteTournament(index){
+
+  if(!confirm(
+    "Delete this tournament?"
+  )){
+
+    return;
+
+  }
+
+
+  tournaments.splice(
+    index,
+    1
+  );
+
+
+  localStorage.setItem(
+    "ultraBrackets",
+    JSON.stringify(tournaments)
+  );
+
+
+  showHome();
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(text){
+
+  if(
+    text === undefined ||
+    text === null
+  ){
+
+    return "";
+
+  }
+
+
+  return String(text)
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+/* =========================================
+   START APP
+========================================= */
+
+showHome();
+
+</script>
+
+</body>
+</html>
